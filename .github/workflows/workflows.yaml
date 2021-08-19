@@ -59,7 +59,7 @@ jobs:
           push: true
           context: frontend
           file: frontend/Dockerfile
-          tags: ttengs/fortune_cookie_frontend:latest
+          tags: ${{ env.docker_username }}/fortune_cookie_frontend:GA-${{ github.sha }}
       - name: Build and push backend
         uses: docker/build-push-action@v2
         with:
@@ -67,3 +67,4 @@ jobs:
           context: backend
           file: backend/Dockerfile
           tags: ttengs/fortune_cookie_backend:latest
+
