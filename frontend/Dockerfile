@@ -6,7 +6,7 @@ COPY . ./
 
 RUN ls && ls ./frontend
 
-RUN go mod init frontend && go build -o /frontend
+RUN go build -o /frontend
 
 EXPOSE 8080
 
