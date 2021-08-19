@@ -13,3 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: kubectl apply -f ./kubernetes
+    #theis lugter
