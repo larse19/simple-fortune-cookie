@@ -76,3 +76,4 @@ jobs:
           push: true
           file: /backend/Dockerfile
           tags: thten19/fortune_cookie_backend:latest
+          #fuck dig Anders
