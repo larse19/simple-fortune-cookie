@@ -21,10 +21,12 @@ jobs:
     steps:
     - name: Install Go
       uses: actions/setup-go@v2
+    - name: HELPA ME
+      run: ls
     - name: Build backend
-      run: cd backend && go build .
+      run: cd /backend && go build .
     - name: Build frontend
-      run: cd frontend && go build .
+      run: cd /frontend && go build .
   Test:
     runs-on: ubuntu-latest
     needs: [Clone-down, Build]
