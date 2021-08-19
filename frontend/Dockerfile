@@ -4,7 +4,7 @@ FROM golang:1.17-alpine
 
 COPY . ./
 
-RUN ls && echo "hello world" && ls ./frontend && echo "Goodbye world" && pwd
+#RUN ls && echo "hello world" && ls ./frontend && echo "Goodbye world" && pwd
 
 RUN go build -o /frontend
 
