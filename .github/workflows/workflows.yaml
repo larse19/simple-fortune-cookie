@@ -1,6 +1,6 @@
 name: Fortune cookie CI
 on: 
-  push
+  push:
   pull_requests:
     branches:
     - master
