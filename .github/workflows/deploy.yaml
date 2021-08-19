@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: bash run.sh
+    - run: run.sh
