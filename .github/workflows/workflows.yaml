@@ -6,7 +6,7 @@ on:
     - master
 jobs:
   Clone-down:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
         name: code
         path: .
   Build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Clone-down
     steps:
     - name: Download a single artifact
@@ -31,7 +31,7 @@ jobs:
     - name: Build frontend
       run: cd frontend && go build .
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Clone-down
     steps:
     - name: Download a single artifact
