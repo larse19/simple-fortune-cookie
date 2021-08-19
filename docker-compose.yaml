@@ -4,7 +4,7 @@ services:
   frontend:
     container_name: frontend
     # TODO configure wordpress
-    build: frontend/
+    image: ttengs/fortune_cookie_frontend:latest
     depends_on:
       - backend
     ports:
@@ -16,7 +16,7 @@ services:
   backend:
     container_name: backend
     # TODO configure mysql
-    build: backend/
+    image: ttengs/fortune_cookie_backend:latest
     depends_on:
       - redis
     ports:
