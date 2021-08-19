@@ -14,7 +14,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: code
-        path: .
+        path: /test
   Build:
     runs-on: self-hosted
     needs: Clone-down
@@ -26,7 +26,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: code
-        path: /frontend
+        path: /test
     - name: Install Go
       uses: actions/setup-go@v2
     - name: Build backend
