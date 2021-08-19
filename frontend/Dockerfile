@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY . ./
 
-RUN go build -o /frontend
+RUN ls && ls ./frontend
+
+RUN go mod init frontend && go build -o /frontend
 
 EXPOSE 8080
 
