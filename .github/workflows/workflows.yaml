@@ -1,0 +1,33 @@
+name: Fortune cookie CI
+on: 
+  push
+  pull_requests:
+    branches:
+    - master
+jobs:
+  clone-down:
+    runs-on: ubuntu:latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Upload Repo
+      uses: actions/upload-artifact@v2
+      with:
+        name: code
+        path: .
+  build:
+    runs-on: ubuntu:latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+    - name: Build backend
+      run: cd backend && go build .
+    - name: Build frontend
+      run: cd frontend && go build .
+  test:
+    runs-on: ubuntu:latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+    - name: Test
+      run: cd frontend && go test .
