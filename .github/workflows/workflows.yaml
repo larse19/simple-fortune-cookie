@@ -68,12 +68,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          context: .
           file: /frontend/Dockerfile
           tags: thten19/fortune_cookie_frontend:latest
       - name: Build and push backend
         uses: docker/build-push-action@v2
         with:
           push: true
+          context: .
           file: /backend/Dockerfile
           tags: thten19/fortune_cookie_backend:latest
           #fuck dig Anders
