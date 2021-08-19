@@ -12,5 +12,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
+    - run: kubectl delete svc --all
+    - run: kubectl delete deployments --all
     - run: kubectl apply -f ./kubernetes
     #theis lugter
