@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . ./
 
+#RUN ls && echo "hello world" && ls ./frontend && echo "Goodbye world" && pwd
+
 RUN go build -o /frontend
 
 EXPOSE 8080

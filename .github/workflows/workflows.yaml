@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
     - master
+env:
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
 jobs:
   Clone-down:
     runs-on: ubuntu-latest
@@ -30,6 +33,10 @@ jobs:
       run: cd backend && go build .
     - name: Build frontend
       run: cd frontend && go build .
+    #- name: Install dependencies
+    #  run: go get -u golang.org/x/lint/golint
+    #- name: Run lint
+    #  run: golint .
   Test:
     runs-on: ubuntu-latest
     needs: Clone-down
@@ -43,3 +50,31 @@ jobs:
       uses: actions/setup-go@v2
     - name: Test
       run: cd frontend && go test .
+  Docker-image:
+    needs: [Build, Test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ env.docker_username }}
+          password: ${{ env.docker_password }}
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: Build and push frontend
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: frontend
+          file: frontend/Dockerfile
+          tags: ttengs/fortune_cookie_frontend:latest
+      - name: Build and push backend
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: backend
+          file: backend/Dockerfile
+          tags: ttengs/fortune_cookie_backend:latest
