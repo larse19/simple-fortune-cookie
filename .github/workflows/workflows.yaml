@@ -64,9 +64,15 @@ jobs:
         with:
           name: code
           path: .
-      - name: Build and push
+      - name: Build and push frontend
         uses: docker/build-push-action@v2
         with:
           push: true
-          file: .
-          tags: thten19/fortune_cookie:latest
+          file: /frontend/Dockerfile
+          tags: thten19/fortune_cookie_frontend:latest
+      - name: Build and push backend
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: /backend/Dockerfile
+          tags: thten19/fortune_cookie_backend:latest
