@@ -6,7 +6,7 @@ on:
     - master
 jobs:
   clone-down:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
         name: code
         path: .
   build:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: Install Go
       uses: actions/setup-go@v2
@@ -25,7 +25,7 @@ jobs:
     - name: Build frontend
       run: cd frontend && go build .
   test:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: Install Go
       uses: actions/setup-go@v2
