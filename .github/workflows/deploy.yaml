@@ -12,5 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: deploy to cluster
-      run: kubectl apply -f ./kubernetes
+    - run: kubectl apply -f ./kubernetes/redis-deployment.yaml
+    - run: kubectl apply -f ./kubernetes/backend-deployment.yaml
+    - run: kubectl apply -f ./kubernetes/backend-service.yaml
+    - run: kubectl apply -f ./kubernetes/frontend-deployment.yaml
+    - run: kubectl apply -f ./kubernetes/frontend-service.yaml
