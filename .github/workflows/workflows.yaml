@@ -19,6 +19,9 @@ jobs:
     runs-on: self-hosted
     needs: Clone-down
     steps:
+    - run: whoami
+    - run: ls
+    - run: pwd
     - name: Download a single artifact
       uses: actions/download-artifact@v2
       with:
