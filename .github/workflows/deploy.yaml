@@ -12,9 +12,4 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-    - run: kubectl apply -f ./kubernetes/redis-deployment.yaml
-    - run: kubectl apply -f ./kubernetes/redis-service.yaml
-    - run: kubectl apply -f ./kubernetes/backend-deployment.yaml
-    - run: kubectl apply -f ./kubernetes/backend-service.yaml
-    - run: kubectl apply -f ./kubernetes/frontend-deployment.yaml
-    - run: kubectl apply -f ./kubernetes/frontend-service.yaml
+    - run: kubectl apply -f ./kubernetes
