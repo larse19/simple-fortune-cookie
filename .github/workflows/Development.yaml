@@ -1,6 +1,6 @@
 name: Development
 on: 
-  pull_request:
+  push:
     branches:
     - "dev/**"
 env:
