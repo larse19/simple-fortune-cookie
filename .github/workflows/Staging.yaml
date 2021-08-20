@@ -1,0 +1,83 @@
+name: Staging
+on: 
+  pull_request:
+    branches:
+    - "staging/**"
+env:
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
+jobs:
+  Clone-down:
+    runs-on: self-hosted
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+  Build:
+    runs-on: self-hosted
+    needs: Clone-down
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Install Go
+      uses: actions/setup-go@v2
+    - name: Build backend
+      run: cd backend && go build .
+    - name: Build frontend
+      run: cd frontend && go build .
+    #- name: Install dependencies
+    #  run: go get -u golang.org/x/lint/golint
+    #- name: Run lint
+    #  run: golint .
+  Test:
+    runs-on: self-hosted
+    needs: Clone-down
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Install Go
+      uses: actions/setup-go@v2
+    - name: Test
+      run: cd frontend && go test .
+  Docker-image:
+    needs: [Build, Test]
+    runs-on: self-hosted
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ env.docker_username }}
+          password: ${{ env.docker_password }}
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push frontend
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: frontend
+          file: frontend/Dockerfile
+          tags: ${{ env.docker_username }}/fortune_cookie_frontend:GA-${{ github.sha }}
+      - name: Build and push backend
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: backend
+          file: backend/Dockerfile
+          tags: ttengs/fortune_cookie_backend:latest
+  deploy:
+    name: deploy to cluster
+    needs: Docker-image
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@master
+    - run: kubectl delete svc --all
+    - run: kubectl delete deployments --all
+    - run: kubectl apply -f ./kubernetes
+  Final-test:
+    name: Testing that endpoint works
+    need: deploy
+    runs-on: self-hosted
+    steps:
+    - run: ./tests/runtime_test.sh

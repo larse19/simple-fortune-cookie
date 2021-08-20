@@ -1,11 +1,8 @@
 on: 
-  push:
-    branches:
-      - 02-co
   pull_request:
     branches:
       - main
-name: deploy
+name: Deployment
 jobs:
   deploy:
     name: deploy to cluster
