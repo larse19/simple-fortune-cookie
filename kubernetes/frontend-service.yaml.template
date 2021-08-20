@@ -10,9 +10,15 @@ metadata:
   name: frontend
 spec:
   type: NodePort
+  env:
+  - name: PORT
+    valueFrom:
+      configMapKeyRef:
+        name: nodePortConfigMap
+        key: PORT
   ports:
   - name: "8080"
     port: 8080
-    targetPort: 8080
+    targetPort: {{PORT}}
   selector:
     io.kompose.service: frontend
