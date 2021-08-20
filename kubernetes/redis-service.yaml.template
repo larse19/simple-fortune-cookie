@@ -3,7 +3,7 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: {{NAME}}
+    service: {{NAME}}
   name: {{NAME}}
 spec:
   ports:
@@ -11,6 +11,6 @@ spec:
     protocol: TCP
     targetPort: 6379
   selector:
-    io.kompose.service: {{NAME}}
+    service: {{NAME}}
 status:
   loadBalancer: {}
