@@ -19,6 +19,7 @@ spec:
   ports:
   - name: "8080"
     port: 8080
-    targetPort: {{PORT}}
+    targetPort: 8080
+    nodePort: {{PORT}}
   selector:
     io.kompose.service: frontend
