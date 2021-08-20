@@ -74,6 +74,6 @@ jobs:
     - uses: actions/checkout@master
     - run: kubectl delete svc --all
     - run: kubectl delete deployments --all
-    - run: bash .kubernetes/development.sh
+    - run: bash ./kubernetes/development.sh
     - run: kubectl apply -f ./kubernetes
 
