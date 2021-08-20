@@ -12,12 +12,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      iservice: {{NAME}}
+      service: {{NAME}}
   strategy: {}
   template:
     metadata:
       labels:
-        iservice: {{NAME}}
+        service: {{NAME}}
     spec:
       containers:
       - env:
