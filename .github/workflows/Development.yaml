@@ -77,8 +77,8 @@ jobs:
     - run: ls
     - name: setup config files
       - run: cd ./kubernetes
-        run: bash development.sh
-        run: cd ..
+      - run: bash development.sh
+      - run: cd ..
     - run: kubectl apply -f ./kubernetes/deployments
     - run: kubectl apply -f ./kubernetes/services
 
