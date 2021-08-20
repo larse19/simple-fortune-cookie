@@ -1,9 +1,7 @@
 name: Fortune cookie CI
 on: 
   push:
-  pull_request:
-    branches:
-    - master
+    - "dev/**"
 env:
   docker_username: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}

@@ -1,7 +1,4 @@
 on: 
-  push:
-    branches:
-      - 02-co
   pull_request:
     branches:
       - main
@@ -14,4 +11,4 @@ jobs:
     - uses: actions/checkout@master
     - run: kubectl delete svc --all
     - run: kubectl delete deployments --all
-    - run: kubectl apply -f ./kubernetes
+    - run: kubectl apply -f ./kubernetes 
