@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-  creationTimestamp: null
+metadata:
   labels:
     service: dev-backend
   name: dev-backend

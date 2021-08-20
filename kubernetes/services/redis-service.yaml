@@ -3,7 +3,7 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: dev-redis
+    service: dev-redis
   name: dev-redis
 spec:
   ports:
@@ -11,6 +11,6 @@ spec:
     protocol: TCP
     targetPort: 6379
   selector:
-    io.kompose.service: dev-redis
+    service: dev-redis
 status:
   loadBalancer: {}
