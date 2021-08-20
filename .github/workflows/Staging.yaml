@@ -77,7 +77,7 @@ jobs:
     - run: kubectl apply -f ./kubernetes
   Final-test:
     name: Testing that endpoint works
-    need: deploy
+    needs: deploy
     runs-on: self-hosted
     steps:
     - run: ./tests/runtime_test.sh
