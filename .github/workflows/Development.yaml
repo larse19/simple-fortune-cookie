@@ -75,5 +75,6 @@ jobs:
     - run: kubectl delete svc --all
     - run: kubectl delete deployments --all
     - run: bash ./kubernetes/development.sh
-#    - run: kubectl apply -f ./kubernetes
+    - run: kubectl apply -f ./kubernetes/deployments
+    - run: kubectl apply -f ./kubernetes/services
 
