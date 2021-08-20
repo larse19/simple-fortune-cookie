@@ -1,9 +1,8 @@
-name: Fortune cookie CI
+name: Staging
 on: 
-  push:
   pull_request:
     branches:
-    - master
+    - "staging/**"
 env:
   docker_username: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
@@ -67,4 +66,18 @@ jobs:
           context: backend
           file: backend/Dockerfile
           tags: ttengs/fortune_cookie_backend:latest
-
+  deploy:
+    name: deploy to cluster
+    needs: Docker-image
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@master
+    - run: kubectl delete svc --all
+    - run: kubectl delete deployments --all
+    - run: kubectl apply -f ./kubernetes
+  Final-test:
+    name: Testing that endpoint works
+    need: deploy
+    runs-on: self-hosted
+    steps:
+    - run: ./tests/runtime_test.sh
