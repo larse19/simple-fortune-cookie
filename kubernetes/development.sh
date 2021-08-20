@@ -6,6 +6,7 @@ FRONTEND_NAME="dev-frontend"
 BACKEND_NAME="dev-backend"
 DB_NAME="dev-redis"
 
+ls
 # read the yml template from a file and substitute the string 
 # {{MYVARNAME}} with the value of the MYVARVALUE variable
 template1=`cat "frontend-service.yaml.template" | sed "s/{{PORT}}/$PORT/g" | sed "s/{{NAME}}/$FRONTEND_NAME/g"` 
