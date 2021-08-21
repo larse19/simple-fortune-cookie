@@ -6,32 +6,30 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: backend
-  name: backend
+    io.kompose.service: dev-frontend
+  name: dev-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: backend
+      service: dev-frontend
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: backend
+        service: dev-frontend
     spec:
       containers:
       - env:
-        - name: REDIS_DNS
-          value: redis
-        image: ttengs/fortune_cookie_backend:latest
+        - name: BACKEND_DNS
+          value: backend
+        - name: BACKEND_PORT
+          value: "9000"
+        image: ttengs/fortune_cookie_frontend:latest
         imagePullPolicy: ""
-        name: backend
+        name: dev-frontend
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

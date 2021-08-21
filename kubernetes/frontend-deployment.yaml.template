@@ -6,27 +6,30 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: redis
-  name: redis
+    io.kompose.service: {{NAME}}
+  name: {{NAME}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: redis
+      service: {{NAME}}
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: redis
+        service: {{NAME}}
     spec:
       containers:
-      - image: redis:alpine
+      - env:
+        - name: BACKEND_DNS
+          value: {{BACKEND_NAME}}
+        - name: BACKEND_PORT
+          value: "9000"
+        image: ttengs/fortune_cookie_frontend:latest
         imagePullPolicy: ""
-        name: redis
+        name: {{NAME}}
+        ports:
+        - containerPort: 8080
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

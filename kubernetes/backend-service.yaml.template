@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: {{NAME}}
+  name: {{NAME}}
+spec:
+  ports:
+  - name: "9000"
+    port: 9000
+    targetPort: 9000
+  selector:
+    service: {{NAME}}
+status:
+  loadBalancer: {}

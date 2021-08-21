@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: {{NAME}}
+  name: {{NAME}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: {{NAME}}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: {{NAME}}
+    spec:
+      containers:
+      - image: redis:alpine
+        imagePullPolicy: ""
+        name: {{NAME}}
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: {{NAME}}
+  name: {{NAME}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: {{NAME}}
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        service: {{NAME}}
+    spec:
+      containers:
+      - env:
+        - name: REDIS_DNS
+          value: {{REDIS_NAME}}
+        image: ttengs/fortune_cookie_backend:latest
+        imagePullPolicy: ""
+        name: {{NAME}}
+        ports:
+        - containerPort: 9000
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
