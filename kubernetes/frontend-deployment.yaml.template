@@ -22,7 +22,7 @@ spec:
       containers:
       - env:
         - name: BACKEND_DNS
-          value: backend
+          value: {{BACKEND_NAME}}
         - name: BACKEND_PORT
           value: "9000"
         image: ttengs/fortune_cookie_frontend:latest
