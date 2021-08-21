@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: REDIS_DNS
-          value: redis
+          value: {{DB_NAME}}
         image: ttengs/fortune_cookie_backend:latest
         imagePullPolicy: ""
         name: {{NAME}}
