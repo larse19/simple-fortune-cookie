@@ -2,26 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: staging-backend
-  name: staging-backend
+    service: {{NAME}}
+  name: {{NAME}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: staging-backend
+      service: {{NAME}}
   strategy: {}
   template:
     metadata:
       labels:
-        service: staging-backend
+        service: {{NAME}}
     spec:
       containers:
       - env:
         - name: REDIS_DNS
-          value: staging-redis
+          value: {{REDIS_NAME}}
         image: ttengs/fortune_cookie_backend:latest
         imagePullPolicy: ""
-        name: staging-backend
+        name: {{NAME}}
         ports:
         - containerPort: 9000
         resources: {}

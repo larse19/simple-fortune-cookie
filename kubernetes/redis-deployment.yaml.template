@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: staging-redis
-  name: staging-redis
+    service: {{NAME}}
+  name: {{NAME}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: staging-redis
+      service: {{NAME}}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        service: staging-redis
+        service: {{NAME}}
     spec:
       containers:
       - image: redis:alpine
         imagePullPolicy: ""
-        name: staging-redis
+        name: {{NAME}}
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

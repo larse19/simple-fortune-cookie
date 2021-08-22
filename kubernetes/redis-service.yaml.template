@@ -3,14 +3,14 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    service: staging-redis
-  name: staging-redis
+    service: {{NAME}}
+  name: {{NAME}}
 spec:
   ports:
   - port: 6379
     protocol: TCP
     targetPort: 6379
   selector:
-    service: staging-redis
+    service: {{NAME}}
 status:
   loadBalancer: {}

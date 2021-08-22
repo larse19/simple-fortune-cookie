@@ -1,11 +1,8 @@
 on: 
-  push:
-    branches:
-      - 02-co
   pull_request:
     branches:
       - main
-name: deploy
+name: Deployment
 jobs:
   deploy:
     name: deploy to cluster
@@ -15,4 +12,3 @@ jobs:
     - run: kubectl delete svc --all
     - run: kubectl delete deployments --all
     - run: kubectl apply -f ./kubernetes
-    #theis lugter
