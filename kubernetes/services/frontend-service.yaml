@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: dev-frontend
-  name: dev-frontend
+    service: staging-frontend
+  name: staging-frontend
 spec:
   type: NodePort
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
-    nodePort: 32746
+    nodePort: 31376
   selector:
-    service: dev-frontend
+    service: staging-frontend
