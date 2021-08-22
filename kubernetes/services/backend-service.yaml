@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: staging-backend
-  name: staging-backend
+    service: dev-backend
+  name: dev-backend
 spec:
   ports:
   - name: "9000"
     port: 9000
     targetPort: 9000
   selector:
-    service: staging-backend
+    service: dev-backend
 status:
   loadBalancer: {}

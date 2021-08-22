@@ -19,7 +19,7 @@ spec:
       - env:
         - name: REDIS_DNS
           value: {{REDIS_NAME}}
-        image: ttengs/fortune_cookie_backend:latest
+        image: {{IMAGE_NAME}}
         imagePullPolicy: ""
         name: {{NAME}}
         ports:
