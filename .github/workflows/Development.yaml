@@ -72,7 +72,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-    - run: cd ./kubernetes && bash development.sh fortune_cookie_backend:GA-${{ github.sha }} fortune_cookie_frontend:GA-${{ github.sha }}
+    - run: cd ./kubernetes && bash development.sh GA-${{ github.sha }}
     - run: kubectl apply -f ./kubernetes/deployments
     - run: kubectl apply -f ./kubernetes/services
 
