@@ -80,4 +80,5 @@ jobs:
     needs: deploy
     runs-on: self-hosted
     steps:
-    - run: ./tests/runtime_test.sh
+    - uses: actions/checkout@master
+    - run: cd ./tests && bash runtime_test.sh
