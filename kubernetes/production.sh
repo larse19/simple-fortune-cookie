@@ -14,9 +14,9 @@ template5=`cat "redis-service.yaml.template" | sed "s/{{NAME}}/$DB_NAME/g"`
 template6=`cat "redis-deployment.yaml.template" | sed "s/{{NAME}}/$DB_NAME/g"`
 
 # apply the yml with the substituted value
-echo "$template1" > frontend-service.yaml
-echo "$template2" > frontend-deployment.yaml
-echo "$template3" > backend-service.yaml
-echo "$template4" > backend-deployment.yaml
-echo "$template5" > redis-service.yaml
-echo "$template6" > redis-deployment.yaml
+echo "$template1" > ./services/frontend-service.yaml
+echo "$template2" > ./deployments/frontend-deployment.yaml
+echo "$template3" > ./services/backend-service.yaml
+echo "$template4" > ./deployments/backend-deployment.yaml
+echo "$template5" > ./services/redis-service.yaml
+echo "$template6" > ./deployments/redis-deployment.yaml
