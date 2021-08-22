@@ -6,28 +6,28 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: staging-frontend
-  name: staging-frontend
+    io.kompose.service: dev-frontend
+  name: dev-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: staging-frontend
+      service: dev-frontend
   strategy: {}
   template:
     metadata:
       labels:
-        service: staging-frontend
+        service: dev-frontend
     spec:
       containers:
       - env:
         - name: BACKEND_DNS
-          value: staging-backend
+          value: dev-backend
         - name: BACKEND_PORT
           value: "9000"
-        image: ttengs/fortune_cookie_frontend:latest
+        image: ttengs/fortune_cookie_frontend:GA-83d5b5b7da64f7502b0b79507eefa852a98b95cc
         imagePullPolicy: ""
-        name: staging-frontend
+        name: dev-frontend
         ports:
         - containerPort: 8080
         resources: {}

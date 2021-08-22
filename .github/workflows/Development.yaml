@@ -65,14 +65,14 @@ jobs:
           push: true
           context: backend
           file: backend/Dockerfile
-          tags: ttengs/fortune_cookie_backend:latest
+          tags: ${{ env.docker_username }}/fortune_cookie_backend:GA-${{ github.sha }}
   deploy:
     name: deploy to cluster
     needs: Docker-image
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-    - run: cd ./kubernetes && bash development.sh
+    - run: cd ./kubernetes && bash development.sh GA-${{ github.sha }}
     - run: kubectl apply -f ./kubernetes/deployments
     - run: kubectl apply -f ./kubernetes/services
 
