@@ -1,17 +1,12 @@
-name: Staging
+name: Production
 on: 
   pull_request:
     branches:
-    - "staging/**"
+    - "main"
 env:
   docker_username: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
 jobs:
-  Clone-down:
-    runs-on: self-hosted
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
   Build:
     runs-on: self-hosted
     needs: Clone-down
@@ -58,21 +53,21 @@ jobs:
           push: true
           context: frontend
           file: frontend/Dockerfile
-          tags: ${{ env.docker_username }}/fortune_cookie_frontend:GA-${{ github.sha }}
+          tags: ${{ env.docker_username }}/fortune_cookie_frontend:latest
       - name: Build and push backend
         uses: docker/build-push-action@v2
         with:
           push: true
           context: backend
           file: backend/Dockerfile
-          tags: ttengs/fortune_cookie_backend:latest
+          tags:  ${{ env.docker_username }}/fortune_cookie_backend:latest
   deploy:
     name: deploy to cluster
     needs: Docker-image
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-    - run: cd ./kubernetes && bash staging.sh
+    - run: cd ./kubernetes && bash production.sh
     - run: kubectl apply -f ./kubernetes/deployments
     - run: kubectl apply -f ./kubernetes/services
   Final-test:
@@ -81,13 +76,4 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-#    - run: cd ./tests && bash runtime_test.sh
     - run: curl 34.79.255.98:31376
-#  Pull-request:
-#    name: Open pull request to main
-#    needs: Final-test
-#    runs-on: self-hosted
-#    steps:
-#    - uses: actions/checkout@master
-#    - name: Create pull request
-#      uses: peter-evans/create-pull-request@v3
