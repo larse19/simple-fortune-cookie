@@ -9,7 +9,6 @@ env:
 jobs:
   Build:
     runs-on: self-hosted
-    needs: Clone-down
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -25,7 +24,6 @@ jobs:
     #  run: golint .
   Test:
     runs-on: self-hosted
-    needs: Clone-down
     steps:
     - name: checkout
       uses: actions/checkout@v2
