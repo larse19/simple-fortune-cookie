@@ -25,7 +25,7 @@ spec:
           value: {{BACKEND_NAME}}
         - name: BACKEND_PORT
           value: "9000"
-        image: {{IMAGE_NAME}}
+        image: ttengs/{{IMAGE_NAME}}
         imagePullPolicy: ""
         name: {{NAME}}
         ports:

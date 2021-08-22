@@ -25,7 +25,7 @@ spec:
           value: dev-backend
         - name: BACKEND_PORT
           value: "9000"
-        image: test2
+        image: ttengs/fortune_cookie_frontend:GA-0e8860cbfd43f7861080fe08fa91a693c2a12234
         imagePullPolicy: ""
         name: dev-frontend
         ports:

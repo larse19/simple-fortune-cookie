@@ -19,7 +19,7 @@ spec:
       - env:
         - name: REDIS_DNS
           value: dev-redis
-        image: test
+        image: ttengs/fortune_cookie_backend:GA-0e8860cbfd43f7861080fe08fa91a693c2a12234
         imagePullPolicy: ""
         name: dev-backend
         ports:

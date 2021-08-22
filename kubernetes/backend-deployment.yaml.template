@@ -19,7 +19,7 @@ spec:
       - env:
         - name: REDIS_DNS
           value: {{REDIS_NAME}}
-        image: {{IMAGE_NAME}}
+        image: ttengs/{{IMAGE_NAME}}
         imagePullPolicy: ""
         name: {{NAME}}
         ports:
