@@ -3,14 +3,14 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    service: dev-redis
-  name: dev-redis
+    service: production-redis
+  name: production-redis
 spec:
   ports:
   - port: 6379
     protocol: TCP
     targetPort: 6379
   selector:
-    service: dev-redis
+    service: production-redis
 status:
   loadBalancer: {}
