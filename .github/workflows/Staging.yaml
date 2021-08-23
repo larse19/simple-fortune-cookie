@@ -82,11 +82,3 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: curl 34.79.255.98:31376
-#  Pull-request:
-#    name: Open pull request to main
-#    needs: Final-test
-#    runs-on: self-hosted
-#    steps:
-#    - uses: actions/checkout@master
-#    - name: Create pull request
-#      uses: peter-evans/create-pull-request@v3
