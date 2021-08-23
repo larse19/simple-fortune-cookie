@@ -65,7 +65,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
-    - run: cd ./kubernetes && bash production.sh GA-${{ github.sha }}
+    - run: cd ./kubernetes && bash production.sh latest
     - run: kubectl apply -f ./kubernetes/deployments
     - run: kubectl apply -f ./kubernetes/services
   Final-test:

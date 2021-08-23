@@ -65,7 +65,7 @@ jobs:
           push: true
           context: backend
           file: backend/Dockerfile
-          tags: ttengs/fortune_cookie_backend:latest
+          tags: ${{ env.docker_username }}/fortune_cookie_backend:GA-${{ github.sha }}
   deploy:
     name: deploy to cluster
     needs: Docker-image
@@ -82,11 +82,3 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: curl 34.79.255.98:31376
-#  Pull-request:
-#    name: Open pull request to main
-#    needs: Final-test
-#    runs-on: self-hosted
-#    steps:
-#    - uses: actions/checkout@master
-#    - name: Create pull request
-#      uses: peter-evans/create-pull-request@v3
